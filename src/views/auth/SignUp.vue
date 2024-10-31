@@ -113,6 +113,7 @@ export default {
           email: this.form.email,
           name: this.form.name,
           password: this.form.password,
+          password_confirmation: this.form.password
         };
         const response = await axiosInstance.post('/register', requestData);
         localStorage.setItem('bearerToken', response.data.data.token);

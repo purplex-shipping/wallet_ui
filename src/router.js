@@ -73,28 +73,28 @@ const routes = [
     meta: { requiresAuth: true } // Protected route, requires authentication
   },
   {
-    path: '/:service',
+    path: '/airtime/:service',
     name: 'airtime',
     component: Airtime,
     meta: { requiresAuth: true }, // Protected route, requires authentication
     props: true,
   },
   {
-    path: '/:service',
+    path: '/data/:service',
     name: 'data',
     component: Data,
     meta: { requiresAuth: true } // Protected route, requires authentication
   },
   {
-    path: '/:service',
+    path: '/subscription/:service',
     name: 'tv-subscription',
     component: Cable,
     meta: { requiresAuth: true }, // Protected route, requires authentication
     props: true,
   },
   {
-    path: '/electricity',
-    name: 'electricity',
+    path: '/electricity/:service',
+    name: 'electricity-bill',
     component: Electricity,
     meta: { requiresAuth: true } // Protected route, requires authentication
   },

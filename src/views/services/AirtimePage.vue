@@ -38,7 +38,7 @@
         </div>
 
         <div class="row justify-content-center g-3 mb-4">
-          <div class="col-6" v-for="amount in [1000, 5000, 8000]" :key="amount" @click="airtimeAmount = amount">
+          <div class="col-4" v-for="amount in [1000, 5000, 8000]" :key="amount" @click="airtimeAmount = amount">
             <div class="card clickable_sign">
               <div class="card-body fs-5 fw-bold orange_color">₦{{ amount }}</div>
             </div>
@@ -114,8 +114,7 @@
 class="btn btn-primary" 
 data-bs-toggle="modal" 
 ref="closeButton2" 
-data-bs-target="#exampleModal2">
-  Launch demo modal
+data-bs-target="#exampleModal2" v-show="false">
 </button>
              <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' -->
@@ -250,6 +249,10 @@ export default {
 
     async payServiceWallet() {
 
+      if(this.serviceID == null) {
+        this.toast('error', 'Please select service provider')
+      }
+
     const lagosTime = new Date(new Date().toLocaleString("en-US", { timeZone: "Africa/Lagos" }));
     const year = lagosTime.getFullYear();
     const month = String(lagosTime.getMonth() + 1).padStart(2, '0');
@@ -281,7 +284,6 @@ export default {
 
         } catch (error) {
         this.status = false
-        this.error = error.response.data.error.message
         this.$refs.closeButton.click();
         this.toast('error', 'Airtime Purchase Unsuccesfull')
         }

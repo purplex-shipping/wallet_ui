@@ -45,18 +45,78 @@
           v-model="amount">
       </div>
 
-      <div class="d-grid gap-2 container">
+      <div class="d-grid gap-2 container" v-if="paymentMethod == 'online'">
         <button 
           class="btn bg_orange fw-bold text-white" 
-          :disabled="amount < 50 && paymentMethod != null"
+          :disabled="amount < 50 && paymentMethod !== null"
           @click="makePayment" 
           type="button">
           Continue
           <i class="bi bi-arrow-right fw-bold"></i> 
         </button>
       </div>
+
+      <div class="d-grid gap-2 container" v-if="paymentMethod == 'coin'">
+        <button 
+          class="btn bg_orange fw-bold text-white" 
+          :disabled="amount < 50 && paymentMethod !== null"
+          data-bs-toggle="modal" data-bs-target="#exampleModal"
+          type="button">
+          Continue
+          <i class="bi bi-arrow-right fw-bold"></i> 
+        </button>
+      </div>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered"> <!-- Added 'modal-dialog-centered' -->
+                  <div class="modal-content">
+                      <div class="modal-header justify-content-center"> <!-- Center the header -->
+                          <h2 class="modal-title text-center" id="exampleModalLabel">
+                            <!--
+                              <i class="bi bi-check-square-fill fw-5 orange_color"></i>
+                          -->
+                              <p class="fw-bold"> {{  'Make Payment' }} </p>
+                          </h2>
+                      </div>
+
+                      <div class="modal-body text-center"> <!-- Center the body content -->
+
+                        <ul class="list-group">
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                  Amount 
+                                  <span class="badge bg_orange_plain rounded-pill"> $ {{ amount }}</span>
+                              </li>
+                        </ul>  
+
+                        <br>
+
+                        <p> Send Bitcoin to the address below: <br>
+                          <strong>{{ walletAddress }}</strong>
+                          <br>
+                          <!-- QR Code Canvas -->
+                          <canvas ref="qrcode" class="qrcode"></canvas>
+                        </p>
+
+                        <p> You can pay {{ amount }} to the address above or pay any amount of your choice and it will trigger here </p>
+                          
+                      </div>
+
+                      <div class="modal-footer justify-content-center"> <!-- Center the footer buttons -->
+                          <button type="button" class="btn bg_orange_plain text-white fw-bold" data-bs-dismiss="modal"> Close </button>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+
+
+
     </div>
 
+    
+
+  
     <div class="loader-container" v-if="!loading">
       <PulseLoader :color="color" :size="size"></PulseLoader>
     </div>
@@ -97,6 +157,7 @@ export default {
 
   mounted() {
     this.getAuthUser();
+    this.generateQRCode();
   },
 
   methods: {
@@ -228,6 +289,10 @@ export default {
 
 .bg_black {
   background-color: black;
+}
+
+.bg_orange_plain {
+  background-color: #FF5733;
 }
 
 .orange_color {

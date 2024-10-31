@@ -45,6 +45,7 @@
       <div class="container">
           <br>
           <p class="fw-bold fs-4 text-white"> Services </p>
+
           <ul class="nav nav-pills nav-fill">
               <li class="nav-item fw-bold border-radius m-3 clickable_sign" 
                   v-for="category in sliceCategoriesOne" 
@@ -56,6 +57,7 @@
                   <span class="orange_color"> {{ category.name }} </span>
               </li>
           </ul>
+
           <ul class="nav nav-pills nav-fill">
               <li class="nav-item fw-bold border-radius m-3 clickable_sign" 
                   v-for="category in sliceCategoriesTwo" 
@@ -66,6 +68,7 @@
                   <span class="orange_color"> {{ category.name }} </span>
               </li>
           </ul>
+          
       </div>
   
       <div class="container"> 
