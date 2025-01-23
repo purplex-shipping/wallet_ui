@@ -13,8 +13,6 @@
 
       <br>
   
-      <img class="img-fluid" src="@/assets/images/illustrator/undraw_secure_files_re_6vdh.svg" width="200" height="100">
-
       <br>
       <br>
   
@@ -107,13 +105,8 @@
         localStorage.setItem('bearerToken', response.data.data.token);
         console.log(typeof response.data.data.token)
 
-        if(response.data.data.user.email_verified_at == null) {
-          this.toast('error', 'Please Verified Your Email')
-          this.$router.push({ name: 'reset-code' });
-        } else {
-          this.toast('success', 'Login Succesfull')
-          this.$router.push({ name: 'home' });
-        }
+        this.$router.push({ name: 'home' });
+
       } catch (error) {
         this.status = false
         this.error = error.response.data.error.message

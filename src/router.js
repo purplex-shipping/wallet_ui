@@ -2,20 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthUser } from '@/store/authenticate'; // Import the useAuthUser store
 
 import Home from './views/HomePage.vue';
-import Transaction from './views/TransactionPage';
-import Payment from './views/PayMent.vue';
 
 import LogIn from './views/auth/LogIn.vue';
 import SignUp from './views/auth/SignUp.vue';
-import ForgetPassword from './views/auth/ForgetPassword.vue';
-import ResetCode from './views/auth/ResetCode.vue';
-import ResetPassword from './views/auth/ResetPassword.vue';
-import Profile from './views/auth/ProfilePage.vue';
 
-import Airtime from './views/services/AirtimePage.vue';
-import Data from './views/services/DataPage.vue';
-import Cable from './views/services/CablePage.vue';
-import Electricity from './views/services/ElectricityPage.vue';
 
 const routes = [
   {
@@ -25,85 +15,18 @@ const routes = [
     meta: { requiresAuth: true } // Protected route, requires authentication
   },
   {
-    path: '/payment',
-    name: 'payment',
-    component: Payment,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
     path: '/login',
     name: 'login',
     component: LogIn,
     meta: { requiresGuest: true }
   },
   {
-    path: '/register',
+   path: '/register',
     name: 'register',
     component: SignUp,
     meta: { requiresGuest: true }
-  },
-  {
-    path: '/reset-code',
-    name: 'reset-code',
-    component: ResetCode,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
-    path: '/forget-password',
-    name: 'forget-password',
-    component: ForgetPassword,
-    meta: { requiresGuest: true }
-  },
-  {
-    path: '/reset-password',
-    name: 'reset-password',
-    component: ResetPassword,
-    meta: { requiresGuest: true }
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: Profile,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
-    path: '/serivices',
-    name: 'services',
-    component: Home,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
-    path: '/airtime/:service',
-    name: 'airtime',
-    component: Airtime,
-    meta: { requiresAuth: true }, // Protected route, requires authentication
-    props: true,
-  },
-  {
-    path: '/data/:service',
-    name: 'data',
-    component: Data,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
-    path: '/subscription/:service',
-    name: 'tv-subscription',
-    component: Cable,
-    meta: { requiresAuth: true }, // Protected route, requires authentication
-    props: true,
-  },
-  {
-    path: '/electricity/:service',
-    name: 'electricity-bill',
-    component: Electricity,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
-  {
-    path: '/transaction',
-    name: 'transaction',
-    component: Transaction,
-    meta: { requiresAuth: true } // Protected route, requires authentication
-  },
+  },  
+ 
   // Add more routes as needed
 
 ];

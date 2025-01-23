@@ -5,12 +5,10 @@
 <div class="card bg_black text-center">
   <div class="card-body">
 
-    <p class="fs-4 fw-bold orange_color" > Welcome to Paper Bill
+    <p class="fs-4 fw-bold orange_color" > Welcome to Wallet
       <br>
       <span class="fs-5 fw-bold orange_color text-white" > Hello there,create new account </span>
     </p>
-
-    <img class="img-fluid" src="@/assets/images/illustrator/undraw_undraw_undraw_undraw_sign_up.svg" width="250" height="100">
 
     <br>
     <br>
@@ -113,12 +111,13 @@ export default {
           email: this.form.email,
           name: this.form.name,
           password: this.form.password,
-          password_confirmation: this.form.password
+          password_confirmation: this.form.password,
+          currency: 'USD'
         };
         const response = await axiosInstance.post('/register', requestData);
         localStorage.setItem('bearerToken', response.data.data.token);
         this.toast('success', 'Registration Succesfull Enter OTP')
-        this.$router.push({ name: 'reset-code' });
+        this.$router.push({ name: 'login' });
       } catch (error) {
         this.status = false
         this.error = error.response.data.error.message

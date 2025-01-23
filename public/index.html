@@ -11,9 +11,18 @@
      <!-- Add Flutterwave Script Here -->
      <script src="https://checkout.flutterwave.com/v3.js"></script>
 
+<style>
+.bg_black-image {
+  background-image: url('/images/imageone.jpeg'); /* Reference to the public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>
+      
 
   </head>
-  <body style="background-color: black;">
+  <body class="bg_black-image">
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
